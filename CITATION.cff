@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+title: "Pentachoric Verification: A Primitive-Complete Quantum-Computer Test of the Merkabit Architecture"
+message: "If you use this software, please cite both the repository and the associated papers."
+type: software
+authors:
+  - family-names: Stenberg
+    given-names: Selina
+repository-code: "https://github.com/SelinaAliens/pentachoric_verification"
+license: MIT
+preferred-citation:
+  type: article
+  title: "The Merkabit Quantum Computing Architecture: Tesseract-Only Memory, Pentachoric Verification, and a Native Z₃ Cyclic Clock on 19 Qubits"
+  authors:
+    - family-names: Stenberg
+      given-names: Selina
+  year: 2026
+  journal: "Merkabit Research Series, Paper 33"
+references:
+  - type: article
+    title: "The Ternary Spectrum: Cyclotomic Z₃ Structure in Coupled Merkabit Triangles"
+    authors:
+      - family-names: Stenberg
+        given-names: Selina
+    year: 2026
+    journal: "Merkabit Research Series, Paper 34"
+  - type: article
+    title: "A Unified Theory from E₆ Coxeter Geometry"
+    authors:
+      - family-names: Stenberg
+        given-names: Selina
+    year: 2026
+    journal: "Merkabit Research Series, Paper 30 (Capstone)"
+    doi: "10.5281/zenodo.19690395"

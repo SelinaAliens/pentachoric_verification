@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-04-20T22:28:42",
+  "protocol": "P4S-Compute-Store (22-qubit, triangle compute cell)",
+  "n_qubits": 22,
+  "label_A": "alpha",
+  "label_B": "alpha",
+  "label_C": "alpha",
+  "n_compute": 1,
+  "n_envelope": 1,
+  "J_intra": 0.1,
+  "J_inter": 1.0,
+  "cross_L1": 0.3,
+  "cross_L2": 0.2,
+  "shots": 1024,
+  "n_trials": 3,
+  "per_trial": [
+    {
+      "store_u_env": 0.4780330793993236,
+      "store_v_env": 0.3247595264191645,
+      "control_u_env": 0.4550068680800324,
+      "control_v_env": 0.3029799910885206
+    },
+    {
+      "store_u_env": 0.38273277230987157,
+      "store_v_env": 0.23385358667337133,
+      "control_u_env": 0.0,
+      "control_v_env": 0.18221724671391565
+    },
+    {
+      "store_u_env": 0.3903123748998999,
+      "store_v_env": 0.4192627457812106,
+      "control_u_env": 0.28641098093474,
+      "control_v_env": 0.4192627457812106
+    }
+  ],
+  "aggregate": {
+    "u_env": {
+      "store_mean": 0.41702607553636506,
+      "store_sem": 0.03058187635461551,
+      "control_mean": 0.24713928300492413,
+      "control_sem": 0.13280877505360608,
+      "gap": 0.16988679253144093,
+      "gap_sem": 0.13628434206690193,
+      "sigma": 1.2465613434010165,
+      "verdict": "FAIL"
+    },
+    "v_env": {
+      "store_mean": 0.3259586196245821,
+      "store_sem": 0.05352637181382486,
+      "control_mean": 0.301486661194549,
+      "control_sem": 0.06843321484641042,
+      "gap": 0.024471958430033136,
+      "gap_sem": 0.08688024731644582,
+      "sigma": 0.2816745944667766,
+      "verdict": "FAIL"
+    }
+  }
+}

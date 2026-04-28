@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-04-20T22:33:48",
+  "protocol": "P4S-Compute-Store (22-qubit, triangle compute cell)",
+  "n_qubits": 22,
+  "label_A": "alpha",
+  "label_B": "alpha",
+  "label_C": "alpha",
+  "n_compute": 1,
+  "n_envelope": 2,
+  "J_intra": 0.1,
+  "J_inter": 1.0,
+  "cross_L1": 0.3,
+  "cross_L2": 0.2,
+  "shots": 2048,
+  "n_trials": 10,
+  "per_trial": [
+    {
+      "store_u_env": 0.34798527267687634,
+      "store_v_env": 0.184877493221863,
+      "control_u_env": 0.25,
+      "control_v_env": 0.21650635094610965
+    },
+    {
+      "store_u_env": 0.4014135180832853,
+      "store_v_env": 0.5009756106837937,
+      "control_u_env": 0.3451675317871019,
+      "control_v_env": 0.5238454566950066
+    },
+    {
+      "store_u_env": 0.4250459533979826,
+      "store_v_env": 0.5625,
+      "control_u_env": 0.28980057798424075,
+      "control_v_env": 0.597847702178406
+    },
+    {
+      "store_u_env": 0.4441459501109967,
+      "store_v_env": 0.427337322849292,
+      "control_u_env": 0.19008632907181935,
+      "control_v_env": 0.4180965050081141
+    },
+    {
+      "store_u_env": 0.4157542092390647,
+      "store_v_env": 0.0625,
+      "control_u_env": 0.2614562582918986,
+      "control_v_env": 0.20252314682524564
+    },
+    {
+      "store_u_env": 0.40019526483955303,
+      "store_v_env": 0.10825317547305482,
+      "control_u_env": 0.34938562148434216,
+      "control_v_env": 0.0
+    },
+    {
+      "store_u_env": 0.36843206632973735,
+      "store_v_env": 0.4441459501109967,
+      "control_u_env": 0.09882117688026186,
+      "control_v_env": 0.4881406047441659
+    },
+    {
+      "store_u_env": 0.3262595784034547,
+      "store_v_env": 0.4307515235028194,
+      "control_u_env": 0.5358258812338202,
+      "control_v_env": 0.41221581119602874
+    },
+    {
+      "store_u_env": 0.3814548629916782,
+      "store_v_env": 0.31868871959954903,
+      "control_u_env": 0.3590351654086268,
+      "control_v_env": 0.22316963839196408
+    },
+    {
+      "store_u_env": 0.41692700200394794,
+      "store_v_env": 0.4386146514880687,
+      "control_u_env": 0.5367363761661771,
+      "control_v_env": 0.44633927678392815
+    }
+  ],
+  "aggregate": {
+    "u_env": {
+      "store_mean": 0.3927613678076577,
+      "store_sem": 0.01158187260745491,
+      "control_mean": 0.32163149183082884,
+      "control_sem": 0.04366367955772275,
+      "gap": 0.07112987597682885,
+      "gap_sem": 0.04517362820955175,
+      "sigma": 1.57458851095314,
+      "verdict": "FAIL"
+    },
+    "v_env": {
+      "store_mean": 0.34786444469294375,
+      "store_sem": 0.05441259874378551,
+      "control_mean": 0.35286844927689687,
+      "control_sem": 0.058366313300775026,
+      "gap": -0.005004004583953114,
+      "gap_sem": 0.07979572313336371,
+      "sigma": -0.06271018530140834,
+      "verdict": "FAIL"
+    }
+  }
+}

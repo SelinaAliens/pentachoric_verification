@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-04-20T22:29:32",
+  "protocol": "P4S-Compute-Store (22-qubit, triangle compute cell)",
+  "n_qubits": 22,
+  "label_A": "alpha",
+  "label_B": "alpha",
+  "label_C": "alpha",
+  "n_compute": 1,
+  "n_envelope": 1,
+  "J_intra": 0.1,
+  "J_inter": 1.0,
+  "cross_L1": 0.3,
+  "cross_L2": 0.2,
+  "shots": 2048,
+  "n_trials": 10,
+  "per_trial": [
+    {
+      "store_u_env": 0.49607837082461076,
+      "store_v_env": 0.2670001170411728,
+      "control_u_env": 0.3890593624371479,
+      "control_v_env": 0.23593232610221093
+    },
+    {
+      "store_u_env": 0.45607873497895074,
+      "store_v_env": 0.22963966338592295,
+      "control_u_env": 0.0,
+      "control_v_env": 0.24206145913796356
+    },
+    {
+      "store_u_env": 0.427337322849292,
+      "store_v_env": 0.42389562394532926,
+      "control_u_env": 0.2633171804117612,
+      "control_v_env": 0.46351240544347894
+    },
+    {
+      "store_u_env": 0.38273277230987157,
+      "store_v_env": 0.34375,
+      "control_u_env": 0.37238672774415577,
+      "control_v_env": 0.4014135180832853
+    },
+    {
+      "store_u_env": 0.4386146514880687,
+      "store_v_env": 0.5266343608235224,
+      "control_u_env": 0.3814548629916782,
+      "control_v_env": 0.5201036555341637
+    },
+    {
+      "store_u_env": 0.4386146514880687,
+      "store_v_env": 0.2576941016011038,
+      "control_u_env": 0.22316963839196408,
+      "control_v_env": 0.27775607554111215
+    },
+    {
+      "store_u_env": 0.37629983058725924,
+      "store_v_env": 0.49706167876833957,
+      "control_u_env": 0.2557922741210141,
+      "control_v_env": 0.46034124570800733
+    },
+    {
+      "store_u_env": 0.25194555463432966,
+      "store_v_env": 0.49804304532841337,
+      "control_u_env": 0.4624577683421482,
+      "control_v_env": 0.5330850659134994
+    },
+    {
+      "store_u_env": 0.2557922741210141,
+      "store_v_env": 0.3140586131600278,
+      "control_u_env": 0.0,
+      "control_v_env": 0.3549317716125171
+    },
+    {
+      "store_u_env": 0.4375,
+      "store_v_env": 0.16237976320958225,
+      "control_u_env": 0.1795175827043134,
+      "control_v_env": 0.15625
+    }
+  ],
+  "aggregate": {
+    "u_env": {
+      "store_mean": 0.3960994163281465,
+      "store_sem": 0.02602036303978873,
+      "control_mean": 0.2527155397144183,
+      "control_sem": 0.050283584395407116,
+      "gap": 0.1433838766137282,
+      "gap_sem": 0.05661711889854899,
+      "sigma": 2.5325180687956714,
+      "verdict": "MARGINAL"
+    },
+    "v_env": {
+      "store_mean": 0.3520156967263414,
+      "store_sem": 0.04035835037960741,
+      "control_mean": 0.36453875230762384,
+      "control_sem": 0.041565207226451725,
+      "gap": -0.012523055581282416,
+      "gap_sem": 0.0579349885400958,
+      "sigma": -0.2161570390682899,
+      "verdict": "FAIL"
+    }
+  }
+}

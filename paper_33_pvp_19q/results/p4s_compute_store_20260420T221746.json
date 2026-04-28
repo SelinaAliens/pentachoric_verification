@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-04-20T22:17:46",
+  "protocol": "P4S-Compute-Store (11-qubit minimal)",
+  "n_qubits": 11,
+  "memory_label": "alpha",
+  "n_compute": 1,
+  "n_envelope": 1,
+  "tunnel_J": 0.5,
+  "cross_L1": 0.3,
+  "cross_L2": 0.2,
+  "shots": 1024,
+  "n_trials": 3,
+  "store_fidelities": [
+    0.33946189035000673,
+    0.3125,
+    0.36174490321219455
+  ],
+  "control_fidelities": [
+    0.2209708691207961,
+    0.15934435979977452,
+    0.4375
+  ],
+  "store_mean": 0.33790226452073374,
+  "store_sem": 0.014237151489911922,
+  "control_mean": 0.2726050763068569,
+  "control_sem": 0.08434494364927696,
+  "gap": 0.06529718821387687,
+  "gap_sem": 0.08553809678585564,
+  "gap_sigma": 0.7633696641316229,
+  "verdict": "FAIL: no discriminable stack effect; tunnel does not transfer content"
+}
