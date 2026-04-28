@@ -60,8 +60,13 @@ paper_33_pvp_19q/                         Paper 33 — 19-qubit Pentachoric Veri
   cirq/run_p4s_distinguishability_cirq.py   stage-A sanity check
   willow/obs22_pentachoric.py               Observable 22 hardware deployment (Willow)
   willow/_engine_wrapper.py                 Engine-client adapter
-  ibm_sim/sim_obs22_pentachoric_ibm.py      IBM Heron / Eagle noise-calibrated simulation
-  results/                                  ~17 JSON outputs (compute_store + IBM sims)
+  ibm_sim/sim_obs22_pentachoric_ibm.py      IBM Heron / Eagle noise-calibrated simulation (v1)
+  ibm_sim/sim_obs22_pentachoric_ibm_v2.py   v2: corrected statistics, separately scaled 2q noise,
+                                            ancilla readout error, parabolic F-gate criterion
+  ibm_sim/fine_F_sweep_ideal.py             cycled-gap landscape map; decides peak vs plateau
+  ibm_sim/fine_F_sweep_peierls_test.py      high-statistics test of plateau ceiling = 1/6
+  ibm_sim/plateau_exact_search.py           machine-precision plateau ceiling + closed-form search
+  results/                                  ~23 JSON outputs (compute_store + IBM v1/v2 + F-sweeps)
   figures/                                  five PVP figures + figure-generation script
                                               p33_fig1_closed_loop.png
                                               p33_fig2_architecture.png
