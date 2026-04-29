@@ -21,7 +21,8 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
 HERE = Path(__file__).parent.resolve()
 STAGE_C_JSON = (
     Path(__file__).resolve().parent.parent
-    / "results" / "p4s_double_triangle_stageC_20260421T171812.json"
+    / "verification" / "outputs"
+    / "stage_c_complex128_FINAL_20260429T101043.json"
 )
 
 plt.rcParams.update({
@@ -36,6 +37,27 @@ plt.rcParams.update({
 # Load Stage C data
 with STAGE_C_JSON.open() as f:
     STAGE_C = json.load(f)
+
+# --- schema compatibility for the complex128 FINAL JSON (no top-level
+# 'offsets' / 'collapse_offsets' / 'locking_offsets' keys; use the keys of
+# mean_entropy and recompute the others)
+if 'offsets' not in STAGE_C:
+    me = STAGE_C['mean_entropy']
+    STAGE_C['offsets'] = sorted(int(k) for k in me.keys())
+    # collapse = local maxima ; locking = local minima
+    vals = [me[str(o)] for o in STAGE_C['offsets']]
+    n = len(vals)
+    collapse, locking = [], []
+    for i, off in enumerate(STAGE_C['offsets']):
+        prev_v = vals[(i-1) % n]
+        next_v = vals[(i+1) % n]
+        if vals[i] > prev_v and vals[i] > next_v:
+            collapse.append(off)
+        if vals[i] < prev_v and vals[i] < next_v:
+            locking.append(off)
+    STAGE_C['collapse_offsets'] = collapse
+    STAGE_C['locking_offsets'] = locking
+
 
 
 # ---------------------------------------------------------------------------
@@ -139,7 +161,7 @@ def figure_1_architecture():
             bbox=dict(boxstyle="round,pad=0.3", facecolor="#FFF2C8",
                         edgecolor="#888800", linewidth=1.0))
 
-    out = HERE / "p34_fig1_architecture.png"
+    out = HERE / "p34_fig1_architecture_complex128.png"
     plt.savefig(out, dpi=400, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved: {out}")
@@ -218,7 +240,7 @@ def figure_2_entropy_spectrum():
                      ha="center", va="top", fontsize=9,
                      fontweight="bold", color="#444444")
 
-    out = HERE / "p34_fig2_entropy_spectrum.png"
+    out = HERE / "p34_fig2_entropy_spectrum_complex128.png"
     plt.savefig(out, dpi=400, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved: {out}")
@@ -277,7 +299,7 @@ def figure_3_fft():
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-    out = HERE / "p34_fig3_fft.png"
+    out = HERE / "p34_fig3_fft_complex128.png"
     plt.savefig(out, dpi=400, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved: {out}")
@@ -393,7 +415,7 @@ def figure_4_stratum_correspondence():
             ha="center", va="center", fontsize=9.5,
             fontstyle="italic", color="#663399")
 
-    out = HERE / "p34_fig4_stratum_correspondence.png"
+    out = HERE / "p34_fig4_stratum_correspondence_complex128.png"
     plt.savefig(out, dpi=400, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"Saved: {out}")
