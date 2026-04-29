@@ -1,16 +1,49 @@
 # Period-12 Exactness Verification
 
 Verifies the headline claim of Paper 34 — that the v_D entropy spectrum is
-periodic at the Coxeter number h(E₆) = 12 — to machine precision, by direct
-state-vector comparison at offset_T2 = base vs base + 12 (which reduce to
-identical dynamics modulo T_CYCLE = 12).
+periodic at the Coxeter number h(E₆) = 12 — to machine precision, both by
+direct state-vector comparison (`verify_period_12.py`, three base offsets)
+and by re-running the full Stage C 324-config sweep at `complex128`
+(`run_stage_c_complex128.py`).
 
-> The driver script lives in the companion repository at
-> [`SelinaAliens/tesseract_quantum_implementation/verification/verify_period_12.py`](https://github.com/SelinaAliens/tesseract_quantum_implementation/blob/main/verification/verify_period_12.py),
+> The driver scripts live in the companion repository at
+> [`SelinaAliens/tesseract_quantum_implementation/verification/`](https://github.com/SelinaAliens/tesseract_quantum_implementation/tree/main/verification),
 > co-located with the Stage C circuit builder and its sibling imports. The
 > output JSONs in this directory are the evidence files cited in Paper 34.
 
-## Result summary
+## Headline (Stage C @ complex128, 324 configs)
+
+| Quantity | Value |
+|---|---|
+| Total runtime | 1.8 hours (laptop) |
+| Bit-identical period-12 pairs | **20 / 24** testable b vs b+12 pairs |
+| Max │Δ⟨S⟩│ across the other 4 pairs | **2.22 × 10⁻¹⁶** (one ulp at complex128) |
+| Peak ⟨S⟩ | 1.16692194635649 at offset 4 = T_CYCLE / 3 |
+| Trough ⟨S⟩ | 1.11348374685806 at offset 8 = 2 T_CYCLE / 3 |
+| Peak − trough contrast Δ⟨S⟩ | **0.053438** |
+| FFT dominant period | 12.0000 (k = 3, 58.4 % of non-DC power) |
+| FFT second peak | period 6 (k = 6, 40.6 % of non-DC power) |
+| Harmonic purity in {12, 6} | **98.94 %** (vs Observable 23 threshold ≥ 90 %) |
+| Z₃ triadic split | peak−trough = 4 = T_CYCLE / 3 exactly |
+
+**Observable 23 — all four pre-registered thresholds PASS at complex128:**
+
+| # | Threshold | Measured | Verdict |
+|---|---|---|---|
+| (a) | FFT dominant period = T_CYCLE ± 1 % | 12.0000 | ✅ PASS |
+| (b) | Peak-trough offset separation = T_CYCLE / 3 ± 1 step | 4 (exact) | ✅ PASS |
+| (c) | Peak-trough contrast ≥ 0.02 | 0.053438 | ✅ PASS |
+| (d) | Harmonic purity in {T_CYCLE, T_CYCLE / 2} ≥ 90 % | 98.94 % | ✅ PASS |
+
+The complex128 contrast (0.053438) is ~2.5 % larger than the value reported
+from the original complex64 Stage C deposit (0.0521). Single-precision FP
+rounding was suppressing the cyclotomic Z₃ signal by ~1 part in 40.
+
+## Direct state-vector verification (verify_period_12.py)
+
+A targeted bit-identity check at three Z₃ triadic base offsets {0, 4, 8} vs
+{12, 16, 20}, each comparing the full 28-qubit state vector ψ(b) and ψ(b+12)
+plus the v_D von Neumann entropy:
 
 | Precision | max ‖ψ(b) − ψ(b+12)‖₂ | max │ΔS│ | Machine eps |
 |---|---|---|---|
@@ -33,9 +66,11 @@ single-precision FP rounding.
 ## Files
 
 ```
-verify_period_12.py                                 verification driver
-outputs/verify_period_12_complex64_baseline.json   complex64 reference
-outputs/verify_period_12_complex128_3bases.json    complex128 (the verification)
+verify_period_12.py                                       direct state-vector verification driver
+run_stage_c_complex128.py                                 full 324-config Stage C re-run at complex128
+outputs/verify_period_12_complex64_baseline.json         3-base complex64 reference
+outputs/verify_period_12_complex128_3bases.json          3-base complex128 verification
+outputs/stage_c_complex128_FINAL_20260429T101043.json    full 324-config Stage C @ complex128 (the headline)
 ```
 
 ## Usage
@@ -88,9 +123,15 @@ Paper 34's entropy-spectrum result is derived analytically from the v_D
 reduced density matrix, so single-precision rounding is what shows up as
 the "six decimals" agreement reported in the master text §4.3.
 
-Re-running Stage C at `complex128` (324 configurations × ~90 s ≈ 8 hours
-on a laptop, ~4.3 GB state vector, ~5 GB resident peak) would tighten
-all reported residuals from 10⁻⁸ to 10⁻¹⁶ and make the period-12
-exactness reported in Paper 34's abstract literally exact at the FP
-level. The verification in this directory demonstrates that the precision
-is achievable; it does not yet replace the full Stage C deposit.
+The full Stage C re-run at `complex128` was completed on 2026-04-29 and is
+deposited as `outputs/stage_c_complex128_FINAL_20260429T101043.json`.
+Total runtime 1.8 hours on a laptop (4.3 GB state vector, ~5 GB resident
+peak), 324 configurations × 26 s mean per config. All reported residuals
+tightened from 10⁻⁸ to 10⁻¹⁶, period-12 exactness is bit-identical at 20
+of 24 testable offset pairs (the remaining 4 differ by exactly one ulp,
+2.22 × 10⁻¹⁶), and all four pre-registered Observable 23 thresholds pass
+cleanly (see headline table above). The complex128 deposit replaces
+the original `complex64` Stage C deposit
+(`p4s_double_triangle_stageC_20260421T171812.json`) as the
+machine-precision reference; both are kept in this repo, the latter as
+a single-precision baseline.
